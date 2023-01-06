@@ -1,9 +1,13 @@
 import React, { FC } from 'react'
+import { Button } from 'antd'
 
-export interface IProps {}
-
-const Button: FC<IProps> = props => {
-  return <div>hello world</div>
+export interface IProps {
+  text: string
 }
 
-export default Button
+const YButton: FC<IProps> = props => {
+  const { text } = props
+  return <Button>{text}</Button>
+}
+
+export default YButton
