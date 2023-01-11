@@ -14,12 +14,16 @@
     "prepare": "husky install"
   },
   "devDependencies": {
+    "@apollo/client": "^3.7.3",
     "@babel/core": "^7.20.7",
+    "@babel/plugin-transform-runtime": "^7.19.6",
     "@babel/preset-env": "^7.20.2",
     "@babel/preset-react": "^7.18.6",
+    "@fruits-chain/react-bailu": "^0.1.30",
     "@rollup/plugin-babel": "^6.0.3",
     "@rollup/plugin-commonjs": "^24.0.0",
     "@rollup/plugin-node-resolve": "^15.0.1",
+    "@rollup/plugin-terser": "^0.3.0",
     "@rollup/plugin-typescript": "^10.0.1",
     "@types/lodash": "^4.14.191",
     "@types/react": "file:../fc-container-web/node_modules/@types/react",
@@ -41,18 +45,17 @@
     "postcss": "^8.4.20",
     "postcss-nested": "^6.0.0",
     "prettier": "^2.8.1",
-    "react": "file:../fc-container-web/node_modules/react",
-    "react-dom": "file:../fc-container-web/node_modules/react-dom",
     "rimraf": "^3.0.2",
     "rollup": "^3.8.1",
     "rollup-plugin-dts": "^5.1.0",
     "rollup-plugin-peer-deps-external": "^2.2.4",
     "rollup-plugin-postcss": "^4.0.2",
-    "rollup-plugin-terser": "^7.0.2",
     "tslib": "^2.4.1",
     "typescript": "^4.9.4"
   },
   "peerDependencies": {
+    "@apollo/client": ">=3.0.0",
+    "@fruits-chain/react-bailu": "^0.1.0",
     "antd": ">=4.0.0",
     "lodash": ">=4.0.0",
     "react": ">=17.0.2",
@@ -63,5 +66,9 @@
       "prettier --write",
       "yarn lint"
     ]
+  },
+  "dependencies": {
+    "angular-expressions": "^1.1.8",
+    "dayjs": "^1.11.7"
   }
 }
