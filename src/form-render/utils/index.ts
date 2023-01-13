@@ -31,6 +31,25 @@ export const schema2RootSchema = (schema: FormSchemaObject, data: AnyObject = {}
   }
 }
 
+export const values2RootData = (data: AnyObject, schema?: FormSchemaObject) => {
+  if (!schema || !schema?.children?.length) return
+  let newData = cloneDeep(data)
+  schema.children.forEach(item => {
+    // 绑定的数据处理
+    if (item?.binds?.length) {
+      const binds = item.binds
+      const values = data[item.key]
+      const val0 = data?.[binds[0]] ? data?.[binds[0]] : undefined
+      const val1 = data?.[binds[1]] ? data?.[binds[1]] : undefined
+      const value0 = values?.[0] ? values[0] : val0
+      const value1 = values?.[1] ? values[1] : val1
+      if (!value0 && !value1) return
+      newData[item.key] = [value0, value1]
+    }
+  })
+  return newData
+}
+
 /**
  * 处理bind，返回最终的数据结果
  */

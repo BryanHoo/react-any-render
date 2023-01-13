@@ -2,7 +2,7 @@ import { Form } from 'antd'
 import { useEffect, useReducer, useRef } from 'react'
 import { AnyObject } from '../../types'
 import { FormSchemaInstance, FormSchemaObject, FormState } from '../types'
-import { rootData2SubmitData, schema2RootSchema } from '../utils'
+import { rootData2SubmitData, schema2RootSchema, values2RootData } from '../utils'
 
 const reducer = (prevState: FormState, updatedProperty: Partial<FormState>): FormState => ({
   ...prevState,
@@ -13,7 +13,7 @@ const initialState: FormState = {
   renderCount: 0,
 }
 
-const useForm = <T>() => {
+const useForm = () => {
   // 原始schema
   const _schema = useRef<FormSchemaObject>()
   // antd form实例
@@ -26,12 +26,11 @@ const useForm = <T>() => {
     }
   }, [state.rootData])
 
-  const getFormData = () => state.rootData
-
   const getValues = () => rootData2SubmitData(state.rootData, state.rootSchema)
 
   const setValues = (values: AnyObject) => {
-    setState({ rootData: values })
+    const rootData = values2RootData(values, state.rootSchema)
+    setState({ rootData })
   }
 
   const validateFields = async () => {
@@ -64,7 +63,6 @@ const useForm = <T>() => {
       _setSchema,
       _setRootData,
     },
-    getFormData,
     getValues,
     setValues,
     validateFields,

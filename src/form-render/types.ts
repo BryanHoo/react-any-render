@@ -48,7 +48,6 @@ export interface FormSchemaObject {
 }
 
 export interface FormSchemaInstance {
-  getFormData: () => AnyObject | undefined
   getValues: () => AnyObject | undefined
   setValues: (values: AnyObject) => void
   validateFields: () => Promise<AnyObject>

@@ -14,14 +14,17 @@ interface IProps {
   name?: string
   widgets?: AnyObject
   layouts?: AnyObject
+  widgetProps?: AnyObject
+  resetHidden?: boolean
+  submitHidden?: boolean
   onMount?: () => void
   onChange?: (values?: AnyObject) => void
-  widgetProps?: AnyObject
-  layoutProps?: AnyObject & { onSubmit?: () => void; resetHidden?: boolean; submitHidden?: boolean }
+  onSubmit?: () => void
+  [key: string]: any
 }
 
 const FormRender: FC<IProps> = props => {
-  const { form, schema, onMount, onChange, locale, widgets, layouts, name, layoutProps, widgetProps } = props
+  const { form, schema, onMount, onChange, locale, widgets, layouts, name, widgetProps, ...layoutProps } = props
   const { _formInstance } = form
   const { _form, _setSchema, _rootData, _rootSchema } = _formInstance
   const allWidgets: AnyObject = { ...innerWidgets, ...widgets }
